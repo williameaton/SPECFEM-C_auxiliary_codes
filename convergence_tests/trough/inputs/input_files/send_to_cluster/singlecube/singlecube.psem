@@ -1,0 +1,33 @@
+# THIS FILE WAS AUTOWRITTEN USING write_psem_file.py - WE
+
+preinfo: nproc=2, method='sem', &
+         ngllx=3, nglly=3,  &
+         ngllz=3, nenode=8,      &
+         ngnode=8, inp_path='./input/singlecube/', &
+         out_path='./output_singlecube/', pot_type='gravity',&
+          pot_dof=1, disp_dof=1, grav0=1          
+
+mesh: xfile='singlecube_coord_x', &
+      yfile='singlecube_coord_y', &
+      zfile='singlecube_coord_z', &
+      confile='singlecube_connectivity', &
+      fsfile='singlecube_free_surface', &
+      idfile='singlecube_material_id', &
+      gfile='singlecube_ghost'
+
+bc: ubc=1,                &
+    uxfile='singlecube_ssbcux', &
+    uyfile='singlecube_ssbcuy', &
+    uzfile='singlecube_ssbcuz' 
+
+material: matfile='trough_material_list',density=1 
+
+sealevel: slfile='trough_SL', savesl0=1, saveOF=1, solvesl=1 
+
+ice: icefile='trough_ice', iceratefile='trough_icerate', saveiceload=1,  saveice0=1, saveicerate=1 
+
+control: ksp_tol=1e-6, ksp_maxiter=1000, nl_tol=1e-4, nl_maxiter=1 
+
+save: disp=1,  strain=1, fsplot=1, gpot=1, agrav=1 
+
+devel: nondim=0
